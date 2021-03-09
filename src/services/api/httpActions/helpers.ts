@@ -5,6 +5,11 @@ import { getEnvParams } from 'core';
 
 import { isErrorStatus, makeApiError } from '../error';
 import { DomainType } from '../model';
+import { axiosConfig } from './defaultAxiosConfig';
+
+function getAxiosInstance(domain: DomainType | undefined = 'baseApi') {
+  return axios.create({ ...axiosConfig, baseURL: getBaseUrl(domain) });
+}
 
 function getBaseUrl(domain: DomainType | undefined = 'baseApi') {
   const baseURL = getEnvParams().baseAPI!;
@@ -12,6 +17,14 @@ function getBaseUrl(domain: DomainType | undefined = 'baseApi') {
     baseApi: baseURL,
   };
   return urls[domain];
+}
+
+function makeObservableHttpAction<T>(axiosPromise: AxiosPromise<T>): Observable<AxiosResponse<T>> {
+  return new Observable(subscriber => {
+    axiosPromise
+      .then(makeHandleResponse<T>(subscriber))
+      .catch(error => subscriber.error(error));
+  });
 }
 
 function makeHandleResponse<T>(subscriber: Subscriber<AxiosResponse<T>>) {
@@ -24,18 +37,4 @@ function makeHandleResponse<T>(subscriber: Subscriber<AxiosResponse<T>>) {
   }
 }
 
-export function getAxiosInstance(domain: DomainType | undefined = 'baseApi') {
-  const axiosConfig = {
-    validateStatus: (status: number) => status <= 526,
-    withCredentials: false,
-  };
-  return axios.create({ ...axiosConfig, baseURL: getBaseUrl(domain) });
-}
-
-export function makeObservableHttpAction<T>(axiosPromise: AxiosPromise<T>): Observable<AxiosResponse<T>> {
-  return new Observable(subscriber => {
-    axiosPromise
-      .then(makeHandleResponse<T>(subscriber))
-      .catch(error => subscriber.error(error));
-  });
-}
+export { makeObservableHttpAction, getAxiosInstance };
