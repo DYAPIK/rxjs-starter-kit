@@ -9,9 +9,9 @@ type HttpActionParams = {
   options?: AxiosRequestConfig;
   data?: any;
   domainType?: DomainType;
-}
+};
 
-export function makeHttpActions() {  
+export function makeHttpActions() {
   return {
     get<T>(args: HttpActionParams): Observable<AxiosResponse<T>> {
       const { url, options, data, domainType } = args;
@@ -37,7 +37,7 @@ export function makeHttpActions() {
     put<T>(args: HttpActionParams): Observable<AxiosResponse<T>> {
       const { url, options, data, domainType } = args;
       const axiosInstance = getAxiosInstance(domainType);
-      const axiosPromise = axiosInstance.put(url, data, options)
+      const axiosPromise = axiosInstance.put(url, data, options);
 
       return makeObservableHttpAction<T>(axiosPromise);
     },

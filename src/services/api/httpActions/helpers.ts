@@ -34,7 +34,7 @@ function makeHandleResponse<T>(subscriber: Subscriber<AxiosResponse<T>>) {
       return;
     }
     subscriber.next(response);
-  }
+  };
 }
 
 export { makeObservableHttpAction, getAxiosInstance };

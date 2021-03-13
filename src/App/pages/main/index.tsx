@@ -1,7 +1,9 @@
 import * as React from 'react';
 
+import { clients } from 'features';
+
 export function MainPage() {
   return (
-    <div>Привет</div>
+    <clients.view.Clients />
   );
 }

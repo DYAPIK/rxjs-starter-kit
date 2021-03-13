@@ -1,11 +1,12 @@
 import { makeHttpActions } from './httpActions';
-
 import { Auth, makeAuthApi } from './resources/auth/auth';
-import { User, makeUserApi } from './resources/user/user';
+import { Client, makeClientApi } from './resources/client/client';
+import { Workspace, makeWorkspaceApi } from './resources/workspace/workspace';
 
-type Api = {
-  user: User;
+export type Api = {
+  client: Client;
   auth: Auth;
+  workspace: Workspace;
 };
 
 type MakerApi = () => Api;
@@ -18,12 +19,13 @@ function getMakerApi(): MakerApi {
       const auth = makeAuthApi();
       instance = {
         auth,
-        user: makeUserApi({ httpActions, auth }),
+        client: makeClientApi({ httpActions, auth }),
+        workspace: makeWorkspaceApi({ httpActions, auth }),
       };
       return instance;
     }
     return instance;
-  }
+  };
 }
 
 export const makeApi = getMakerApi();

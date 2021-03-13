@@ -4,6 +4,7 @@
       "./node_modules/@types",
       "./@types"
     ],
+    "traceResolution": true,
     "strictNullChecks": true,
     "noImplicitAny": false,
     "module": "esnext",
@@ -19,7 +20,7 @@
       "scripthost",
       "esnext"
     ],
-    "jsx": "preserve",
+    "jsx": "react",
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "baseUrl": "./src",
@@ -34,7 +35,8 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src/**/*",

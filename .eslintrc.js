@@ -46,7 +46,8 @@ module.exports = {
     'implicit-arrow-linebreak': 'off', // TODO: УДОЛИТЬ
     'no-restricted-imports': ['error', 'react-jss', '@material-ui/core', '@material-ui/icons', 'i18next', 'react-i18next'], // TODO: УДОЛИТЬ react-jss
     'no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true  }],
-    'no-console': ['error', { allow: ['info', 'warn', 'error'] }],
+    'no-console': ['warn', { allow: ['info', 'warn', 'error'] }],
+    'no-debugger': 'warn',
     'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
     'arrow-parens': ['error', 'as-needed'], // TODO: УДОЛИТЬ
     'no-undef': 'off',
