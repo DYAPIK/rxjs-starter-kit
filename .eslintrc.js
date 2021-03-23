@@ -28,7 +28,7 @@ module.exports = {
       ]
     }],
     'import/prefer-default-export': 'off',
-    'import/no-default-export': 'error',
+    'import/no-default-export': 'off',
     'import/no-cycle': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/type-annotation-spacing': ['error', { 
@@ -51,6 +51,7 @@ module.exports = {
     'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
     'arrow-parens': ['error', 'as-needed'], // TODO: УДОЛИТЬ
     'no-undef': 'off',
+    "max-len": [2, {"code": 120, "tabWidth": 4, "ignoreUrls": true}]
   },
   env: {
     jest: true,

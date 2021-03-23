@@ -1,6 +1,6 @@
-import { Api } from 'services/api';
+import { Services } from 'services';
 
 export type FeatureDeps<Model> = {
-  api: Api;
+  services: Services
   model: Model;
 };

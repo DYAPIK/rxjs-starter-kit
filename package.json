@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.3",
+    "@types/ramda": "^0.27.39",
     "axios": "^0.21.1",
+    "ramda": "^0.27.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",

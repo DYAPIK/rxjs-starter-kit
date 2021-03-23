@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { clients } from 'features';
+import { Clients } from 'features/clients/view';
 
 export function MainPage() {
   return (
-    <clients.view.Clients />
+    <Clients />
   );
 }

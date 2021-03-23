@@ -1,14 +1,22 @@
-import { FeatureDeps } from 'shared/types';
+import { Observable } from 'rxjs';
+
+import { Services } from 'services';
 
 import { ClientsModel } from '../model';
 
-function createClientController({ api, model }: FeatureDeps<ClientsModel>) {
+function createClientController(services: Services, model: ClientsModel) {
   return {
+
     loadWorkspaces() {
-      api.workspace.loadWorkspaces().subscribe(x => {
-        model.workspaces$.next(x);
-      });
+      onEmit(
+        services.api.workspace.loadWorkspaces(),
+        workspaces => {
+          model.data.workspaces$.next(workspaces);
+          model.edit.clients$.next([1, 2, 3]);
+        },
+      );
     },
+
   };
 }
 

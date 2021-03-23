@@ -1,20 +1,24 @@
 import React from 'react';
 
-import { makeApi, Api } from 'services/api';
+import { ServicesProvider } from 'services';
 
 import { initFeatures } from './initFeatures';
 import { FeaturesProvider } from './featureProvider';
+import { initServices } from './initServices';
 
-function initAppEntities(api: Api) {
-  return { features: initFeatures(api) };
+function initAppEntities() {
+  const services = initServices();
+  return { features: initFeatures(services), services };
 }
 
 function DepsProvider({ children }) {
-  const api = makeApi();
+  const appEntities = initAppEntities();
   return (
-    <FeaturesProvider value={initAppEntities(api).features}>
-      {children}
-    </FeaturesProvider>
+    <ServicesProvider value={appEntities.services}>
+      <FeaturesProvider value={appEntities.features}>
+        {children}
+      </FeaturesProvider>
+    </ServicesProvider>
   );
 }
 

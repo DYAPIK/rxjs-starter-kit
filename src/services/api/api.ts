@@ -11,7 +11,7 @@ export type Api = {
 
 type MakerApi = () => Api;
 
-function getMakerApi(): MakerApi {
+function makeApiFactory(): MakerApi {
   let instance: Api | null = null;
   const httpActions = makeHttpActions();
   return () => {
@@ -28,4 +28,4 @@ function getMakerApi(): MakerApi {
   };
 }
 
-export const makeApi = getMakerApi();
+export const getApi = makeApiFactory();

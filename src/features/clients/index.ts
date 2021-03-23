@@ -1,17 +1,11 @@
-import { Api } from 'services/api/api';
+import { makeFeatureStoreFactory } from 'shared/featureFactory';
 
 import * as view from './view';
 import { createClientController } from './controller';
 import { createModel } from './model';
 
-function makeFeature(api: Api) {
-  const model = createModel();
-  return {
-    model,
-    controller: createClientController({ api, model }),
-  };
-}
+const clientsStoreFactory = makeFeatureStoreFactory(createModel, createClientController);
 
-export type ClientFeature = ReturnType<typeof makeFeature>;
+export type ClientFeatureStore = ReturnType<typeof clientsStoreFactory>;
 
-export { view, makeFeature };
+export { view, clientsStoreFactory };

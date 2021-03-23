@@ -1,9 +1,9 @@
 import { useContext, createContext } from 'react';
 
-import { ClientFeature } from 'features/clients';
+import { ClientFeatureStore } from 'features/clients';
 
 export type Features = {
-  readonly clients: ClientFeature;
+  readonly clients: ClientFeatureStore;
 };
 
 const featuresContext = createContext<Features | null>(null);

@@ -1,1 +1,1 @@
-export * from './containers';
+export { default as Clients } from './Clients';

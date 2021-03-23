@@ -2,7 +2,12 @@ import { BehaviorSubject } from 'rxjs';
 
 export function createModel() {
   return {
-    workspaces$: new BehaviorSubject<any[]>([]),
+    data: {
+      workspaces$: new BehaviorSubject<string[]>([]),
+    },
+    edit: {
+      clients$: new BehaviorSubject<number[]>([]),
+    },
   };
 }
 
